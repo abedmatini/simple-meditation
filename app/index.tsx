@@ -13,10 +13,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import "../global.css";
 import beachImage from "@/assets/meditation-images/beach.webp";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "expo-router";
+import AppGradient from "@/components/AppGradient";
 
 // Get screen height
 const { height: screenHeight } = Dimensions.get("window");
 const App = () => {
+  const router = useRouter();
   return (
     <View className="flex-1">
       <ImageBackground
@@ -24,10 +27,7 @@ const App = () => {
         resizeMode="cover"
         className="flex-1"
       >
-        <LinearGradient
-          className="flex-1"
-          colors={["rgba(0,0,0,0.4)", "rgba(0 ,0,0,0.8)"]}
-        >
+        <AppGradient colors={["rgba(0,0,0,0.4)", "rgba(0 ,0,0,0.8)"]}>
           {/* <SafeAreaView className="flex-1 mx-5 my-8 justify-between"> */}
           <SafeAreaView
             style={
@@ -42,7 +42,7 @@ const App = () => {
             }
             className={
               Platform.OS === "android"
-                ? "flex-1 mx-5 my-8 justify-between"
+                ? "flex-1 px-1 justify-between"
                 : undefined
             }
           >
@@ -55,17 +55,17 @@ const App = () => {
               </Text>
             </View>
             <View>
+              {/* onPress={() => console.log("get started pressed")} */}
               <CustomButton
                 title="Get Started"
-                onPress={() => console.log("get started pressed")}
+                onPress={() => router.push("/nature-meditate")}
                 textStyle="text-black"
                 containerStyles="bg-white mt-5"
               />
             </View>
-
             <StatusBar style="light" />
           </SafeAreaView>
-        </LinearGradient>
+        </AppGradient>
       </ImageBackground>
     </View>
   );

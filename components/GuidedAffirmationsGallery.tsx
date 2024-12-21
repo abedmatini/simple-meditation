@@ -15,13 +15,12 @@ const GuidedAffirmationsGallery = ({
   return (
     <View className="my-5">
       <View className="mb-2">
-        <Text className="text-white font-bold text-xl">
-          GuidedAffirmationsGallery
-        </Text>
+        <Text className="text-white font-bold text-xl">{title}</Text>
       </View>
       <View className="space-y-2">
         <FlatList
           data={previews}
+          horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
@@ -32,6 +31,8 @@ const GuidedAffirmationsGallery = ({
                     source={item.image}
                     resizeMode="cover"
                     className="w-full h-full"
+                    accessibilityRole="image"
+                    onError={(e) => console.warn("Image failed to load:", e)}
                   />
                 </View>
               </Pressable>
